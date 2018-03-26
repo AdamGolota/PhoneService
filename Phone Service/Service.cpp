@@ -18,8 +18,6 @@ Service::Service(Customer customer, Phone phone, std::string description) :
 	this->customer = customer;
 	this->phone = phone;
 	this->description = description;
-
-	this->log();
 }
 
 int Service::getServicesCount()
@@ -62,10 +60,11 @@ Service Service::parse(std::string info)
 
 int Service::erase()
 {
+	const std::string tempFileName = "temp.txt";
 	std::string serviceStr;
 	std::fstream services, temp;
 	services.open(servicesFileName, std::fstream::in);
-	temp.open("temp.txt", std::fstream::out);
+	temp.open(tempFileName, std::fstream::out);
 	do 
 	{
 		std::getline(services, serviceStr);
@@ -78,13 +77,15 @@ int Service::erase()
 	temp.close();
 
 	services.open(servicesFileName, std::fstream::out | std::fstream::trunc);
-	temp.open("temp.txt", std::fstream::in);
+	temp.open(tempFileName, std::fstream::in);
 	do
 	{
 		std::getline(temp, serviceStr);
 		services << serviceStr;
 	} while (!temp.eof());
-
+	services.close();
+	temp.close();
+	remove(tempFileName.c_str());
 	return 0;
 }
 
@@ -100,4 +101,5 @@ int Service::log()
 
 Service::~Service()
 {
+	Service::servicesCount--;
 }
