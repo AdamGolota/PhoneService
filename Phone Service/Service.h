@@ -2,17 +2,21 @@
 #include "Customer.h"
 #include "Phone.h"
 #include "string"
-
+#include "vector"
 class Service
 {
 public:
 	~Service();
 	Service();
-	Service(Customer customer, Phone phone, std::string description);
+	Service(const Service&);
+	Service(Customer customer, Phone phone, std::string description, int code);
 	static int getServicesCount();
 	std::string stringify();
+	static std::vector<Service> loadServices();
 	static Service parse(std::string info);
-
+	int erase();
+	int	log();
+	
 private:
 	const int code;
 	static int servicesCount;
@@ -21,7 +25,5 @@ private:
 	std::string description;
 	bool status;
 
-	int erase();
-	int	log();
 };
 
