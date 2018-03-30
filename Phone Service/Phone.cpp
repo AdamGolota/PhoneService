@@ -4,6 +4,8 @@
 
 Phone::Phone()
 {
+	this->model = "No_model";
+	this->manufacturer = "No_manufacturer";
 }
 
 Phone::Phone(std::string model, std::string manufacturer)

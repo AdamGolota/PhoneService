@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Phone.cpp" />
     <ClCompile Include="Service.cpp" />
   </ItemGroup>

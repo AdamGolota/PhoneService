@@ -4,6 +4,8 @@
 
 Customer::Customer()
 {
+	this->fullName = "No Name";
+	this->contactNumber = "No_Number";
 }
 
 Customer::Customer(std::string name, std::string surname, std::string contactNumber)
