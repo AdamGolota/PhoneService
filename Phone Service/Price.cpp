@@ -15,15 +15,29 @@ Price::Price()
 	this->discount = 0;
 }
 
+Price Price::operator+(Price price)
+{
+	Price sum;
+	sum.value = this->toCur("USD") + price.toCur("USD");
+	return sum;
+}
+
+Price Price::operator-(Price price)
+{
+	Price sum;
+	sum.value = this->toCur("USD") - price.toCur("USD");
+	return sum;
+}
+
 Price::Price(const float& USD)
 {
 	this->value = USD;
 	this->discount = 0;
 }
 
-Price Price::toCur(const std::string& currency)
+float Price::toCur(const std::string& currency)
 {
-	return Price();
+	return this->value * Price::rates[currency];
 }
 
 int Price::setCur(const std::string& currency)
@@ -60,6 +74,11 @@ float Price::getDiscount()
 	if (this->discount > 1.f)
 		return 1.f;
 	return this->discount;
+}
+
+std::string Price::getCurrency()
+{
+	return Price::currency;
 }
 
 

@@ -7,8 +7,7 @@ const std::string servicesFileName = "services.txt";
 
 int Service::servicesCount = 0;
 
-Service::Service() :
-	code(Service::servicesCount++)
+Service::Service() : code(Service::servicesCount++)
 {
 	this->customer = Customer();
 	this->phone = Phone();
@@ -97,15 +96,13 @@ Service Service::parse(std::string info)
 	infoStr >> model;
 	infoStr >> manufacturer;
 	getline(infoStr, description);
-	Service service
-	(
+	Service service (
 		Customer(name, surname, contactNumber),
 		Phone(model, manufacturer),
 		description,
 		code
 	);
 	return service;
-
 }
 
 int Service::erase()
@@ -119,8 +116,6 @@ int Service::erase()
 		return 1;
 	}
 	temp.open(tempFileName, std::fstream::out);
-
-
 
 	do 
 	{
