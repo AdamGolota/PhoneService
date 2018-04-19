@@ -15,19 +15,20 @@ Price::Price()
 	this->discount = 0;
 }
 
-Price Price::operator+(Price price)
+Price operator+(Price price1, Price price2)
 {
 	Price sum;
-	sum.value = this->toCur("USD") + price.toCur("USD");
+	sum.value = price1.toCur("USD") + price2.toCur("USD");
 	return sum;
 }
 
-Price Price::operator-(Price price)
+Price operator-(Price price1, Price price2)
 {
 	Price sum;
-	sum.value = this->toCur("USD") - price.toCur("USD");
+	sum.value = price1.toCur("USD") - price2.toCur("USD");
 	return sum;
 }
+
 
 Price::Price(const float& USD)
 {

@@ -5,8 +5,8 @@ class Price
 {
 public:
 	Price();
-	Price operator+(Price);
-	Price operator-(Price);
+	friend Price operator+(Price price1, Price price2);
+	friend Price operator-(Price price1, Price price2);
 	Price(const float& value);	
 	float toCur(const std::string& currency);		// Convert into specified currency
 	static int setCur(const std::string& currency);	// Set standard currency
