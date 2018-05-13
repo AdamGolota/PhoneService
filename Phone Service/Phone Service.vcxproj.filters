@@ -27,6 +27,9 @@
     <ClInclude Include="Price.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Recordable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Customer.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Price.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Recordable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
