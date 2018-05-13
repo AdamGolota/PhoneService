@@ -30,9 +30,9 @@ Price operator-(Price price1, Price price2)
 }
 
 
-Price::Price(const float& USD)
+Price::Price(const float& value)
 {
-	this->value = USD;
+	this->setValue(value);
 	this->discount = 0;
 }
 
@@ -80,6 +80,11 @@ float Price::getDiscount()
 std::string Price::getCurrency()
 {
 	return Price::currency;
+}
+
+void Price::setValue(float value)
+{
+	this->value = value / this->rates[Price::currency];
 }
 
 

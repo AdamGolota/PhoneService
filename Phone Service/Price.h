@@ -15,6 +15,7 @@ public:
 	void addDiscount(const float& discount);
 	float getDiscount();
 	static std::string getCurrency();
+	void setValue(float value);
 	~Price();
 private:
 	float value;

@@ -3,6 +3,7 @@
 #include "Phone.h"
 #include "string"
 #include "vector"
+#include "Price.h"
 class Service
 {
 public:
@@ -16,7 +17,8 @@ public:
 	static Service parse(std::string info);
 	int erase();
 	int	log();
-	
+
+	Price price;
 private:
 	const int code;
 	static int servicesCount;
