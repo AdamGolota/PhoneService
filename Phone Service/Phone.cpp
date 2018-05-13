@@ -1,6 +1,7 @@
 #include "Phone.h"
 #include "sstream"
 
+//std::string filename = "phones.txt";
 
 Phone::Phone()
 {
@@ -24,6 +25,24 @@ std::string Phone::getManufacturer()
 {
 	return this->manufacturer;
 }
+
+std::string Phone::stringify()
+{
+	this->data["model"] = this->model;
+	this->data["manufacturer"] = this->manufacturer;
+	return this->Recordable::stringify();
+}
+
+
+Phone Phone::parse(std::string data)
+{
+	Phone phone;
+	phone.data = Recordable::parse(data).getData();
+	phone.model = phone.data["model"];
+	phone.manufacturer = phone.data["manufacturer"];
+	return phone;
+}
+
 
 
 Phone::~Phone()

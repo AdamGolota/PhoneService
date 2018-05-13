@@ -1,14 +1,15 @@
 #include "Customer.h"
 #include "sstream"
 
+//std::string filename = "customers.txt";
 
-Customer::Customer()
+Customer::Customer() : Recordable()
 {
 	this->fullName = "No Name";
 	this->contactNumber = "No_Number";
 }
 
-Customer::Customer(std::string name, std::string surname, std::string contactNumber)
+Customer::Customer(std::string name, std::string surname, std::string contactNumber) : Recordable()
 {
 	this->setFullName(name, surname);
 	this->setContactNumber(contactNumber);
@@ -41,6 +42,13 @@ std::string Customer::getContactNumber()
 int Customer::getServiceCount()
 {
 	return this->serviceCount;
+}
+
+std::string Customer::stringify()
+{
+	this->data["fullName"] = this->fullName;
+	this->data["contactNumber"] = this->contactNumber;
+	return this->Recordable::stringify();
 }
 
 Customer::~Customer()

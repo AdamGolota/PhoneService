@@ -1,6 +1,7 @@
 #pragma once
 #include "string"
-class Customer
+#include "Recordable.h"
+class Customer : public Recordable
 {
 public:
 	Customer();
@@ -11,7 +12,10 @@ public:
 	std::string getFullName();
 	std::string getContactNumber();
 	int getServiceCount();
+	std::string stringify();
+
 private:
+//	static std::string filename;
 	std::string fullName;
 	std::string contactNumber;
 	int serviceCount;

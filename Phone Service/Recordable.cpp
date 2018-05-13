@@ -7,7 +7,7 @@ const char kDel = ':';		//key delimiter
 const char fDel = ';';		//field delimiter
 const char rDel = '\n';		//record delimiter
 int Recordable::count = 0;
-std::string Recordable::filename = "records.txt";
+//std::string Recordable::filename = "records.txt";
 Recordable::Recordable()
 {
 	this->code = 0;
@@ -19,40 +19,40 @@ Recordable::~Recordable()
 	Recordable::count--;
 }
 
-int Recordable::log()
-{
-	std::fstream fs;
-	fs.open(this->filename, std::fstream::out | std::fstream::app);
-	if (fs.rdstate() & std::fstream::failbit)
-	{
-		return 1;
-	}
-	this->code = ++Recordable::count;
-	fs << this->code << cDel;
-	fs << this->stringify();
-	fs.close();
-	return 0;
-}
+//int Recordable::log()
+//{
+//	std::fstream fs;
+//	fs.open(this->filename, std::fstream::out | std::fstream::app);
+//	if (fs.rdstate() & std::fstream::failbit)
+//	{
+//		return 1;
+//	}
+//	this->code = ++Recordable::count;
+//	fs << this->code << cDel;
+//	fs << this->stringify();
+//	fs.close();
+//	return 0;
+//}
 
-int Recordable::erase(int code)
-{
-	std::string record;
-	std::fstream fs;
-	
-	std::vector<Recordable> records = Recordable::load();
-	remove(this->filename.c_str());
-
-	for (int i = 0; i < records.size(); i++)
-	{
-		if (records[i].code != code)
-		{
-			if(records[i].log() == 1)
-				return 1;
-		}
-	}
-	Recordable::count--;
-	return 0;
-}
+//int Recordable::erase(int code)
+//{
+//	std::string record;
+//	std::fstream fs;
+//	
+//	std::vector<Recordable> records = Recordable::load();
+//	remove(this->filename.c_str());
+//
+//	for (int i = 0; i < records.size(); i++)
+//	{
+//		if (records[i].code != code)
+//		{
+//			if(records[i].log() == 1)
+//				return 1;
+//		}
+//	}
+//	Recordable::count--;
+//	return 0;
+//}
 
 std::string Recordable::stringify()
 {
@@ -65,32 +65,32 @@ std::string Recordable::stringify()
 	ss << rDel;
 	return ss.str();
 }
-
-std::vector<Recordable> Recordable::load()
-{
-	int code;
-	std::fstream fs;
-	std::string record;
-	fs.open(Recordable::filename, std::fstream::in);
-	std::vector<Recordable> records;
-	if (fs.rdstate() & std::fstream::failbit)
-	{
-		return records;
-	}
-
-	do {
-		fs >> code;
-		std::getline(fs, record, rDel);
-		if (!record.empty())
-		{
-			records.push_back(Recordable::parse(record));
-			records.back().code = code;
-		}
-	} while (!fs.eof());
-
-	fs.close();
-	return records;
-}
+//
+//std::vector<Recordable> Recordable::load()
+//{
+//	int code;
+//	std::fstream fs;
+//	std::string record;
+//	fs.open(Recordable::filename, std::fstream::in);
+//	std::vector<Recordable> records;
+//	if (fs.rdstate() & std::fstream::failbit)
+//	{
+//		return records;
+//	}
+//
+//	do {
+//		fs >> code;
+//		std::getline(fs, record, rDel);
+//		if (!record.empty())
+//		{
+//			records.push_back(Recordable::parse(record));
+//			records.back().code = code;
+//		}
+//	} while (!fs.eof());
+//
+//	fs.close();
+//	return records;
+//}
 
 Recordable Recordable::parse(std::string data)
 {
@@ -102,10 +102,21 @@ Recordable Recordable::parse(std::string data)
 	std::stringstream ss(data);
 	Recordable object;
 	
-	while (!ss.eof())
+
+	while (ss.peek() != rDel)
 	{
 		std::getline(ss, key, kDel);
 		std::getline(ss, object.data[key], fDel);
 	}
 	return object;
+}
+
+std::map<std::string, std::string> Recordable::getData()
+{
+	return this->data;
+}
+
+int Recordable::getCode()
+{
+	return this->code;
 }

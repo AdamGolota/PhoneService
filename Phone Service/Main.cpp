@@ -5,66 +5,19 @@
 #include "Price.h"
 int main()
 {
-
-	Customer customer2("Alina", "Sematska", "0000000000");
-	Customer customer;
-	Price price(40);
-	price.addDiscount(0.5);
-	Price price2(80);
-	float priceFloat = price2.toCur("UAH");
-	Price price3 = price + price2;
-	float priceInUsd = price.getValue();
-	Price::setCur("UAH");
-	float priceInUah = price.getValue();
-	float price2InUah = price2.getValue();
-	std::string cur = Price::getCurrency();
-	Service service(customer, Phone(), "description", Service::getServicesCount());
-	Service service2 = service;
-	// GET FROM DATABASE
-	customer2.setFullName("Alina", "Nesematska");
-	customer2.setContactNumber("11111111111");
-	customer.setContactNumber(customer2.getContactNumber());
-	service.log();
-	service.stringify();
-
-
-
-	std::vector<Service> services;
-	services = Service::loadServices();
-
-	
-	// SERVICE MANIPULATION
-
-	services.push_back(Service());
-	services.push_back(Service (
-		Customer("Marco", "Rubio", "+380504824"),
-		Phone("IPhone_7", "Apple"),
-		"No mini jack!",
-		Service::getServicesCount()
-	));
-
-	// DISPLAY SERVICES LIST
-
-	for (Service s : services)
-	{
-		std::cout << s.stringify();
-	}
-
-	// LOG SERVICES
-
-	//for (Service s : services)
-	//{
-	//	s.log();
-	//}
-
-
-	// ERASE SERVICES
-	
-	//for (Service s : services)
-	//{
-	//	s.erase();
-	//}
-
+	Customer customer("Mister", "Postman", "666");
+	std::cout << customer.stringify() << "\n";
+	Phone phone("IPhone", "Apple");
+	std::string str = phone.stringify();
+	std::cout << str << "\n";
+	Phone phone2 = Phone::parse(str);
+	std::string str2 = phone2.stringify();
+	std::cout << str2 << "\n";
+	Phone phone3 = Phone::parse(str);
+	std::string str3 = phone3.stringify();
+	std::cout << str3 << "\n";
+	Service service(customer, phone2, "Hello world");
+	std::cout << service.stringify() << "\n";
 	_getch();
 	return 0;
 }
