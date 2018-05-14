@@ -5,20 +5,13 @@
 
 //std::string Service::filename = "services.txt";
 
-Service::Service() : Recordable()
-{
-	this->customer = Customer();
-	this->phone = Phone();
-	this->description = "No description";
-}
-
 Service::Service (
-	Customer customer, 
+	Customer &customer, 
 	Phone phone, 
 	std::string description
-) : Recordable()
+) : customer(customer),
+	Recordable()
 {
-	this->customer = customer;
 	this->phone = phone;
 	this->description = description;
 }
