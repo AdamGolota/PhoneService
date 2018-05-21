@@ -6,6 +6,7 @@ class Customer : public Recordable
 public:
 	Customer();
 	~Customer();
+	Customer(Recordable);
 	Customer(std::string name, std::string surname, std::string contactNumber);
 	int setFullName(std::string name, std::string surname);
 	int setContactNumber(std::string contactNumber);

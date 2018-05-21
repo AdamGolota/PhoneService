@@ -3,21 +3,23 @@
 #include "vector"
 #include "iostream"
 #include "Price.h"
+#include "string"
 int main()
 {
+
 	Customer customer("Mister", "Postman", "666");
-	std::cout << customer.stringify() << "\n";
-	Phone phone("IPhone", "Apple");
-	std::string str = phone.stringify();
-	std::cout << str << "\n";
-	Phone phone2 = Phone::parse(str);
-	std::string str2 = phone2.stringify();
-	std::cout << str2 << "\n";
-	Phone phone3 = Phone::parse(str);
-	std::string str3 = phone3.stringify();
-	std::cout << str3 << "\n";
-	Service service(customer, phone2, "Hello world");
-	std::cout << service.stringify() << "\n";
+	Customer customer2("Alina", "Sematska", "000");
+	Recordable *p = &customer;
+	std::string str = ((Customer*)p)->getFullName();
+
+	Recordable *pArr[2] = { &customer, &customer2 };
+	std::string str2 = ((Customer *)pArr[0])->getFullName();
+	std::string str3 = ((Customer *)pArr[1])->getFullName();
+
+	std::cout << str2 << std::endl << str3 << std::endl;
+	std::string str4 = customer.stringify();
+	std::cout << str4;
+	Customer customer3 = Customer::parse(str4);
 	_getch();
 	return 0;
 }

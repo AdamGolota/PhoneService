@@ -3,7 +3,7 @@
 
 //std::string filename = "customers.txt";
 
-Customer::Customer() : Recordable()
+Customer::Customer()
 {
 	this->fullName = "No Name";
 	this->contactNumber = "No_Number";
@@ -53,4 +53,10 @@ std::string Customer::stringify()
 
 Customer::~Customer()
 {
+}
+
+Customer::Customer(Recordable r)
+{
+	this->fullName = r.getData()["fullName"];
+	this->contactNumber = r.getData()["contactNumber"];
 }
