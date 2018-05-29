@@ -8,10 +8,10 @@ public:
 	Phone(std::string model, std::string manufacturer);
 	std::string getModel();
 	std::string getManufacturer();
-	std::string stringify();
-	static Phone parse(std::string data);
 	~Phone();
 private:
+	void setData();
+	void getData();
 	static int code;
 	std::string model;
 	std::string manufacturer;

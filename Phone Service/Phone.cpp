@@ -26,22 +26,20 @@ std::string Phone::getManufacturer()
 	return this->manufacturer;
 }
 
-std::string Phone::stringify()
+void Phone::setData()
 {
 	this->data["model"] = this->model;
 	this->data["manufacturer"] = this->manufacturer;
-	return this->Recordable::stringify();
 }
 
-
-Phone Phone::parse(std::string data)
+void Phone::getData()
 {
-	Phone phone;
-	phone.data = Recordable::parse(data).getData();
-	phone.model = phone.data["model"];
-	phone.manufacturer = phone.data["manufacturer"];
-	return phone;
+	this->model = this->data["model"];
+	this->manufacturer = this->data["manufacturer"];
 }
+
+
+
 
 
 

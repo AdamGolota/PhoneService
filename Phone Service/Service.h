@@ -10,12 +10,13 @@ class Service : public Recordable
 public:
 	~Service();
 	Service(Customer &customer, Phone phone, std::string description);
-	std::string stringify();
 
 	Price price;
 private:
 //	static std::string filename;
 	Customer &customer;
+	void setData();
+	void getData();
 	Phone phone;
 	std::string description;
 	bool status;

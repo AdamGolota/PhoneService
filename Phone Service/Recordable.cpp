@@ -10,8 +10,8 @@ int Recordable::count = 0;
 //std::string Recordable::filename = "records.txt";
 Recordable::Recordable()
 {
-	this->code = 0;
 }
+
 
 
 Recordable::~Recordable()
@@ -57,6 +57,7 @@ Recordable::~Recordable()
 std::string Recordable::stringify()
 {
 	std::stringstream ss;
+	this->setData();
 	for (auto pair : this->data)
 	{
 		ss << pair.first << kDel;
@@ -92,31 +93,27 @@ std::string Recordable::stringify()
 //	return records;
 //}
 
-Recordable Recordable::parse(std::string data)
-{
-	if (data.empty())
-	{
-		return Recordable();
-	}
-	std::string key;
-	std::stringstream ss(data);
-	Recordable object;
-	
-
-	while (ss.peek() != rDel)
-	{
-		std::getline(ss, key, kDel);
-		std::getline(ss, object.data[key], fDel);
-	}
-	return object;
-}
-
-std::map<std::string, std::string> Recordable::getData()
-{
-	return this->data;
-}
 
 int Recordable::getCode()
 {
 	return this->code;
+}
+
+void Recordable::parse(std::string data)
+{
+
+	if (data.empty())
+	{
+		return;
+	}
+	std::string key;
+	std::stringstream ss(data);
+
+
+	while (ss.peek() != rDel)
+	{
+		std::getline(ss, key, kDel);
+		std::getline(ss, this->data[key], fDel);
+	}
+	this->getData();
 }

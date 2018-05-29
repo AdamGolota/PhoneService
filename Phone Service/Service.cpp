@@ -16,13 +16,20 @@ Service::Service (
 	this->description = description;
 }
 
-std::string Service::stringify()
+void Service::setData()
 {
 	this->data["customer"] = this->customer.getFullName();
 	this->data["phone"] = this->phone.getModel();
 	this->data["description"] = this->description;
-	return this->Recordable::stringify();
 }
+
+void Service::getData()
+{
+	this->customer.getFullName() = this->data["customer"];
+	this->phone.getModel() = this->data["phone"];
+	this->description = this->data["description"];
+}
+
 
 
 

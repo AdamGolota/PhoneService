@@ -13,13 +13,12 @@ int main()
 	std::string str = ((Customer*)p)->getFullName();
 
 	Recordable *pArr[2] = { &customer, &customer2 };
-	std::string str2 = ((Customer *)pArr[0])->getFullName();
-	std::string str3 = ((Customer *)pArr[1])->getFullName();
-
-	std::cout << str2 << std::endl << str3 << std::endl;
+	
 	std::string str4 = customer.stringify();
+	std::string str5 = customer.stringify();
+	std::string str6 = customer.stringify();
 	std::cout << str4;
-	Customer customer3 = Customer::parse(str4);
+
 	_getch();
 	return 0;
 }

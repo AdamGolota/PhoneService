@@ -44,19 +44,18 @@ int Customer::getServiceCount()
 	return this->serviceCount;
 }
 
-std::string Customer::stringify()
+void Customer::setData()
 {
 	this->data["fullName"] = this->fullName;
 	this->data["contactNumber"] = this->contactNumber;
-	return this->Recordable::stringify();
+}
+
+void Customer::getData()
+{
+	this->fullName = this->data["fullName"];
+	this->contactNumber = this->data["contactNumber"];
 }
 
 Customer::~Customer()
 {
-}
-
-Customer::Customer(Recordable r)
-{
-	this->fullName = r.getData()["fullName"];
-	this->contactNumber = r.getData()["contactNumber"];
 }
