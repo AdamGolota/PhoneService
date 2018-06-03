@@ -1,8 +1,8 @@
 #include "Phone.h"
 #include "sstream"
-
+#include "fstream"
 //std::string filename = "phones.txt";
-
+const std::string Phone::filename = "Phones.txt";
 Phone::Phone()
 {
 	this->model = "No_model";
@@ -26,6 +26,11 @@ std::string Phone::getManufacturer()
 	return this->manufacturer;
 }
 
+std::string Phone::getFileName()
+{
+	return filename;
+}
+
 void Phone::setData()
 {
 	this->data["model"] = this->model;
@@ -39,9 +44,27 @@ void Phone::getData()
 }
 
 
+void Phone::load(std::vector<Recordable*>& arr)
+{
+	std::fstream fs;
+	std::string record;
+	fs.open(filename, std::fstream::in);
+	if (fs.rdstate() & std::fstream::failbit)
+	{
+		return;
+	}
+	do {
+		std::getline(fs, record, rDel);
+		if (!record.empty())
+		{
+			Phone *p = new Phone;
+			p->parse(record);
+			arr.push_back(p);
+		}
+	} while (!fs.eof());
 
-
-
+	fs.close();
+}
 
 Phone::~Phone()
 {

@@ -8,6 +8,9 @@ public:
 	Phone(std::string model, std::string manufacturer);
 	std::string getModel();
 	std::string getManufacturer();
+	std::string getFileName();
+	static const std::string filename;
+	static void load(std::vector<Recordable*>& arr);
 	~Phone();
 private:
 	void setData();

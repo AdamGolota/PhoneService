@@ -12,7 +12,9 @@ public:
 	std::string getFullName();
 	std::string getContactNumber();
 	int getServiceCount();
-
+	std::string getFileName();
+	static const std::string filename;
+	static void load(std::vector<Recordable*>& arr);
 private:
 	void setData();
 	void getData();

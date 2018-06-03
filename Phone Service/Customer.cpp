@@ -1,8 +1,9 @@
 #include "Customer.h"
 #include "sstream"
+#include "fstream"
 
 //std::string filename = "customers.txt";
-
+const std::string Customer::filename = "Customers.txt";
 Customer::Customer()
 {
 	this->fullName = "No Name";
@@ -42,6 +43,33 @@ std::string Customer::getContactNumber()
 int Customer::getServiceCount()
 {
 	return this->serviceCount;
+}
+
+std::string Customer::getFileName()
+{
+	return filename;
+}
+
+void Customer::load(std::vector<Recordable*>& arr)
+{
+	std::fstream fs;
+	std::string record;
+	fs.open(filename, std::fstream::in);
+	if (fs.rdstate() & std::fstream::failbit)
+	{
+		return;
+	}
+	do {
+		std::getline(fs, record, rDel);
+		if (!record.empty())
+		{
+			Customer *c = new Customer;
+			c->parse(record);
+			arr.push_back(c);
+		}
+	} while (!fs.eof());
+
+	fs.close();
 }
 
 void Customer::setData()

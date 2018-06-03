@@ -6,18 +6,22 @@
 #include "string"
 int main()
 {
-
 	Customer customer("Mister", "Postman", "666");
 	Customer customer2("Alina", "Sematska", "000");
-	Recordable *p = &customer;
-	std::string str = ((Customer*)p)->getFullName();
+	Phone phone("A", "B");
+	Service service(customer, phone, "Doesn't work!");
 
-	Recordable *pArr[2] = { &customer, &customer2 };
-	
-	std::string str4 = customer.stringify();
-	std::string str5 = customer.stringify();
-	std::string str6 = customer.stringify();
-	std::cout << str4;
+	std::vector<Recordable*> records;
+	Customer::load(records);
+	Phone::load(records);
+	Service::load(records);
+	records.push_back(&service);
+
+	remove(Customer::filename.c_str());
+	remove(Phone::filename.c_str());
+	remove(Service::filename.c_str());
+
+	Recordable::logArr(records);
 
 	_getch();
 	return 0;

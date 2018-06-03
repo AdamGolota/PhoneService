@@ -1,0 +1,2 @@
+contactNumber:666;fullName:Mister Postman;
+contactNumber:000;fullName:Alina Sematska;

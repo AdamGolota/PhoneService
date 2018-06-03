@@ -8,13 +8,16 @@
 class Service : public Recordable
 {
 public:
+	Service();
 	~Service();
-	Service(Customer &customer, Phone phone, std::string description);
-
+	Service(Customer customer, Phone phone, std::string description);
+	std::string getFileName();
+	static const std::string filename;
 	Price price;
+	static void load(std::vector<Recordable*>& arr);
 private:
 //	static std::string filename;
-	Customer &customer;
+	Customer customer;
 	void setData();
 	void getData();
 	Phone phone;
