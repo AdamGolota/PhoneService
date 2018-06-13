@@ -50,38 +50,20 @@ std::string Customer::getFileName()
 	return filename;
 }
 
-void Customer::load(std::vector<Recordable*>& arr)
+void Customer::read(std::fstream & fs)
 {
-	std::fstream fs;
-	std::string record;
-	fs.open(filename, std::fstream::in);
-	if (fs.rdstate() & std::fstream::failbit)
-	{
-		return;
-	}
-	do {
-		std::getline(fs, record, rDel);
-		if (!record.empty())
-		{
-			Customer *c = new Customer;
-			c->parse(record);
-			arr.push_back(c);
-		}
-	} while (!fs.eof());
-
-	fs.close();
+	std::string name, surname;
+	fs >> name;
+	fs >> surname;
+	this->setFullName(name, surname);
+	fs >> this->contactNumber;
 }
 
-void Customer::setData()
+int Customer::write(std::fstream & fs)
 {
-	this->data["fullName"] = this->fullName;
-	this->data["contactNumber"] = this->contactNumber;
-}
-
-void Customer::getData()
-{
-	this->fullName = this->data["fullName"];
-	this->contactNumber = this->data["contactNumber"];
+	fs << this->fullName << " ";
+	fs << this->contactNumber << "\n";
+	return 0;
 }
 
 Customer::~Customer()

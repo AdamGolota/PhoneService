@@ -30,6 +30,9 @@
     <ClInclude Include="Recordable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RecordablePointerList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Customer.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Recordable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordablePointerList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -31,39 +31,22 @@ std::string Phone::getFileName()
 	return filename;
 }
 
-void Phone::setData()
+void Phone::read(std::fstream &fs)
 {
-	this->data["model"] = this->model;
-	this->data["manufacturer"] = this->manufacturer;
+	fs >> this->model;
+	fs >> this->manufacturer;
 }
 
-void Phone::getData()
+int Phone::write(std::fstream & fs)
 {
-	this->model = this->data["model"];
-	this->manufacturer = this->data["manufacturer"];
+	fs << this->model << " ";
+	fs << this->manufacturer << "\n";
+	return 0;
 }
 
-
-void Phone::load(std::vector<Recordable*>& arr)
+void Phone::setModel(std::string model)
 {
-	std::fstream fs;
-	std::string record;
-	fs.open(filename, std::fstream::in);
-	if (fs.rdstate() & std::fstream::failbit)
-	{
-		return;
-	}
-	do {
-		std::getline(fs, record, rDel);
-		if (!record.empty())
-		{
-			Phone *p = new Phone;
-			p->parse(record);
-			arr.push_back(p);
-		}
-	} while (!fs.eof());
-
-	fs.close();
+	this->model = model;
 }
 
 Phone::~Phone()

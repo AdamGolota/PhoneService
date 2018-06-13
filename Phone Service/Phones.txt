@@ -1,1 +1,1 @@
-manufacturer:B;model:A;
+A B

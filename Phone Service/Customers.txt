@@ -1,2 +1,2 @@
-contactNumber:666;fullName:Mister Postman;
-contactNumber:000;fullName:Alina Sematska;
+Mister Postman 666
+Alina Sematska 000

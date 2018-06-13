@@ -29,46 +29,25 @@ std::string Service::getFileName()
 	return filename;
 }
 
-void Service::load(std::vector<Recordable*>& arr)
+void Service::read(std::fstream & fs)
 {
-	std::fstream fs;
-	std::string record;
-	fs.open(filename, std::fstream::in);
-	if (fs.rdstate() & std::fstream::failbit)
-	{
-		return;
-	}
-		
-	do {
-		std::getline(fs, record, rDel);
-		if (!record.empty())
-		{
-			Service *s = new Service;
-			s->parse(record);
-			arr.push_back(s);
-		}
-	} while (!fs.eof());
-		
-	fs.close();
-
+	std::string name, surname, model;
+	fs >> name;
+	fs >> surname;
+	this->customer.setFullName(name, surname);
+	fs >> model;
+	this->phone.setModel(model);
+	fs.ignore(1);
+	std::getline(fs, this->description);
 }
 
-void Service::setData()
+int Service::write(std::fstream &fs)
 {
-	this->data["customer"] = this->customer.getFullName();
-	this->data["phone"] = this->phone.getModel();
-	this->data["description"] = this->description;
+	fs << this->customer.getFullName() << " ";
+	fs << this->phone.getModel() << " ";
+	fs << this->description << "\n";
+	return 0;
 }
-
-void Service::getData()
-{
-	this->customer.getFullName() = this->data["customer"];
-	this->phone.getModel() = this->data["phone"];
-	this->description = this->data["description"];
-}
-
-
-
 
 Service::~Service()
 {

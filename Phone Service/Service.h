@@ -14,9 +14,9 @@ public:
 	std::string getFileName();
 	static const std::string filename;
 	Price price;
-	static void load(std::vector<Recordable*>& arr);
+	void read(std::fstream&);
+	int write(std::fstream&);
 private:
-//	static std::string filename;
 	Customer customer;
 	void setData();
 	void getData();
